@@ -1,0 +1,73 @@
+<head>
+  <title>meteor-semantic-ui</title>
+</head>
+
+<body>
+  {{> header}}
+  {{> modal}}
+  {{> dropdown}}
+  {{> allowadditions}}
+</body>
+
+<template name="dropdown">
+  <div>
+    <i class="home icon"></i>
+  </div>
+  <i class="ca flag"></i>
+  <div class="ui dropdown">
+    <div class="text">Dropdown Shop</div>
+    <i class="dropdown icon"></i>
+    <div class="menu">
+      <div class="header">Categories</div>
+      <div class="item">Clothing</div>
+      <div class="item">Home Goods</div>
+      <div class="item">Bedroom</div>
+      <div class="divider"></div>
+      <div class="header">Order</div>
+      <div class="item">Status</div>
+      <div class="item">Cancellations</div>
+    </div>
+  </div>
+</template>
+
+<template name="header">
+  <div class="ui menu">
+    <a class="active item">
+      <i class="home icon"></i> Home
+    </a>
+    <a class="item">
+      <i class="mail icon"></i> Messages
+    </a>
+    <div class="right menu">
+      <a class="item">
+        <i class="facebook square icon"></i>
+      </a>
+      <a class="item">
+        <i class="twitter square icon"></i>
+      </a>
+    </div>
+  </div>
+</template>
+
+<template name="modal">
+  <button id="show-modal-button" class="ui primary button">
+    Show Modal
+  </button>
+
+  <div class="ui modal">
+    <i class="close icon"></i>
+    <p id="inside-modal">Modal is loaded!</p>
+  </div>
+</template>
+
+<template name="allowadditions">
+  <div class="field">
+      <label for="languages">Supported Languages</label>
+      <select name="languages" class="ui fluid multiple search selection dropdown" id="languages" multiple="">
+            <option value="">Languages</option>
+                  {{#each langs}}
+                         <option value="{{name}}">{{name}}</option>
+                  {{/each}}
+       </select>
+   </div>
+</template>
