@@ -8,12 +8,10 @@ Workflows
 
 This happens whenever Semantic UI changes version.
 
-    $ ./scripts/generate.sh 2.1.4
+    $ make generate VERSION=2.1.4
+    # verify packages to be version 2.1.4
     # do some testing, and
-    $ ./publish.sh 2.1.4
-
-    # or 1 command without testing
-    $ ./scripts/generate-and-publish.sh 2.1.4
+    $ make publish VERSION=2.1.4
 
 ### Fix issues with the packages
 
@@ -23,9 +21,9 @@ This happens whenever a fix is needed for the Meteor packages.
 2. **commit** the changes prior executing scripts
 3. choose the package version
   a. version should be something like `2.1.4_1`
-4. `$ ./scripts/generate.sh 2.1.4_1`
+4. `$ make generate VERSION=2.1.4_1`
 5. do some testing
-6. `$ ./scripts/publish.sh 2.1.4_1`
+6. `$ make publish VERSION=2.1.4_1`
 
 ### Testing
 
@@ -44,4 +42,3 @@ scripts/ | script to generate and publish the packages
 templates/ | files to copy (and generates) to the packages
 tmp/ | downloaded data like semantic ui and generated data from gulp
 gulpfile.js | tasks for generating the packages
-
