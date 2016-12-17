@@ -1,31 +1,77 @@
-Meteorize Semantic UI
+Semantic UI Meteorize
 =====================
 
-Workflows
----------
+This tool generates 2 meteor packages based on Semantic UI.
 
-### Bump version of Semantic UI
+- [Semantic-UI-Meteor-Data](https://github.com/Semantic-Org/Semantic-UI-Meteor-Data)
+- [Semantic-UI-Meteor](https://github.com/Semantic-Org/Semantic-UI-Meteor)
 
-This happens whenever Semantic UI changes version.
+Pre-requisites
+---------------
 
-    $ make generate VERSION=2.1.4
-    # verify packages to be version 2.1.4
-    # do some testing, and
-    $ make publish VERSION=2.1.4
+- Docker
+- Write access to Semantic-UI-Meteor-Data and Semantic-UI-Meteor
+- Publish access to Atmosphere for the packages
+
+Versioning
+----------
+
+The versions of each packages are identical based on the version of Semantic UI.
+
+If `PACKAGE_VERSION` is `2.2.6` then it will download Semantic UI `v2.2.6` and generate the packages with version `2.2.6`.
+
+Sometime you may want to fix a package and the version of Semantic UI has not been changed. Therefore you can use `PACKAGE_VERSION=2.2.6_1` which will still download Semantic UI `2.2.6` but will publish the packages with version `2.2.6_1`.
+
+Usage
+------
+
+```bash
+# build docker image
+$ make docker-build
+# configure env.sh
+$ cp env.template.sh env.sh
+# edit env.sh properly
+$ vim env.sh
+# shell docker container
+$ make docker-shell
+# dependencies
+$ make deps
+# generate
+$ make generate
+
+# do some testing!!!
+
+# publish semantic:ui-data
+$ make publish-ui-data
+# publish semantic:ui
+$ make publish-ui
+# clean
+$ make clean
+```
 
 ### Fix issues with the packages
 
-This happens whenever a fix is needed for the Meteor packages.
+```bash
+# fix the problem
+# commit it
+$ git commit -am "fix..."
+$ git push origin master
 
-1. fix the problems
-2. **commit** the changes prior executing scripts
-3. choose the package version
-  a. version should be something like `2.1.4_1`
-4. `$ make generate VERSION=2.1.4_1`
-5. do some testing
-6. `$ make publish VERSION=2.1.4_1`
+# change env var PACKAGE_VERSION with something like 2.2.6_1
 
-### Testing
+# generate
+$ make generate
+
+# do some testing!!!
+
+# publish semantic:ui-data
+$ make publish-ui-data
+# publish semantic:ui
+$ make publish-ui
+```
+
+Testing
+-------
 
 TBD
 
@@ -38,7 +84,7 @@ dist/ | generated meteor packages
 gulp-tasks/ | gulp tasks separated in multiple files to ease the development
 lib/ | contains files that creates the data for themes, sites and definitions
 meteor-test/ | meteor app that uses semantic ui packages from dist/
-scripts/ | script to generate and publish the packages
+scripts/ | script to publish the packages
 templates/ | files to copy (and generates) to the packages
 tmp/ | downloaded data like semantic ui and generated data from gulp
 gulpfile.js | tasks for generating the packages

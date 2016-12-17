@@ -3,7 +3,7 @@ var info = {};
 info.pkg = {
   name: 'semantic:ui',
   version: '<%= pkgVersion %>',
-  base: './dist/semantic:ui',
+  base: './dist/semantic-ui',
   git: 'git@github.com:Semantic-Org/Semantic-UI-Meteor.git'
 };
 
@@ -11,10 +11,10 @@ info.pkg = {
 info.pkgData = {
   name: 'semantic:ui-data',
   version: '<%= pkgDataVersion %>',
-  base: './dist/semantic:ui-data',
-  lib: './dist/semantic:ui-data/lib',
+  base: './dist/semantic-ui-data',
+  lib: './dist/semantic-ui-data/lib',
   git: 'git@github.com:Semantic-Org/Semantic-UI-Meteor-Data.git',
-  semanticUi: './dist/semantic:ui-data/lib/semantic-ui'
+  semanticUi: './dist/semantic-ui-data/lib/semantic-ui'
 };
 
 info.semantic = {

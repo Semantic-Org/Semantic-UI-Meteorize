@@ -1,28 +1,19 @@
 #!/bin/bash
-# $ ./publish.sh 2.0.0
-# $ ./publish.sh 2.0.0_3
+
 set -e
-PACKAGE_VERSION=$1
-CURRENT_DIR=$(pwd)
-SEMANTIC_UI_PACKAGE="${CURRENT_DIR}/dist/semantic:ui"
-SEMANTIC_UI_DATA_PACKAGE="${CURRENT_DIR}/dist/semantic:ui-data"
+[ -z "$PACKAGE_PATH" ] && echo "PACKAGE_PATH needs to be set" && exit 1
+[ -z "$GIT_USER_EMAIL" ] && echo "GIT_USER_EMAIL needs to be set" && exit 1
+[ -z "$GIT_USER_NAME" ] && echo "GIT_USER_NAME needs to be set" && exit 1
+[ -z "$PACKAGE_VERSION" ] && echo "PACKAGE_VERSION needs to be set" && exit 1
 
-function publish {
-  REPO=$1
-  echo "publishing ${REPO} ..."
-
-  cd ${REPO}
-  # Publishing causes to change .versions file. That is why git commit happens after
-  meteor publish
-  git add --all
-  git commit -m "Meteor package bump version ${PACKAGE_VERSION}"
-  git push origin master
-  git tag -a v${PACKAGE_VERSION} -m "bump version ${PACKAGE_VERSION}"
-  git push --tags
-}
-
-publish ${SEMANTIC_UI_DATA_PACKAGE}
-publish ${SEMANTIC_UI_PACKAGE}
-
-cd $CURRENT_DIR
-echo "${PACKAGE_VERSION}" > version
+echo "publishing ${PACKAGE_PATH} ..."
+cd ${PACKAGE_PATH}
+# Publishing causes to change .versions file. That is why git commit happens after
+meteor publish
+git config user.email "$GIT_USER_EMAIL"
+git config user.name "$GIT_USER_NAME"
+git add --all
+git commit -m "Meteor package bump version ${PACKAGE_VERSION}"
+git push origin master
+git tag -a v${PACKAGE_VERSION} -m "bump version ${PACKAGE_VERSION}"
+git push --tags
