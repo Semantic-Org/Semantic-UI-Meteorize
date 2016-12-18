@@ -12,6 +12,8 @@ Pre-requisites
 - Docker
 - Write access to Semantic-UI-Meteor-Data and Semantic-UI-Meteor
 - Publish access to Atmosphere for the packages
+  - <https://atmospherejs.com/semantic/ui>
+  - <https://atmospherejs.com/semantic/ui-data>
 
 Versioning
 ----------
